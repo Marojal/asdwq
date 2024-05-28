@@ -1,7 +1,7 @@
 from django import forms
-from .models import Pendaftaran
+from .models import Formulir
 
-class PendaftaranForm(forms.ModelForm):
+class FormulirForm(forms.ModelForm):
     class Meta:
-        model = Pendaftaran
+        model = Formulir
         fields = '__all__'

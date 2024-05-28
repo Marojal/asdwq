@@ -18,7 +18,6 @@ class Formulir(models.Model):
     jenis_kelamin = models.TextField(blank=True, null=True)
     prog1 = models.TextField(blank=True, null=True)
     prog2 = models.TextField(blank=True, null=True)
-    prog3 = models.TextField(blank=True, null=True)
     foto = models.ImageField(upload_to='pengguna', blank=True, null=True)
 
     def __str__(self):

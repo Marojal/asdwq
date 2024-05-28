@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from pengguna.models import Formulir
+from pengguna.forms import FormulirForm
 
-from pengguna.forms import PendaftaranForm
 # Create your views here.
 
 def home(request):
@@ -28,12 +28,37 @@ def akun_pengguna(request):
     }
     return render(request, template, context)
     
-def pendaftaran_view(request):
-    if request.method == 'POST':
-        form = PendaftaranForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('success_url')  # Redirect ke halaman sukses setelah menyimpan data
-    else:
-        form = PendaftaranForm()
-    return render(request, 'dashboard/snippets/formulir.html', {'form': form})
+
+# def formulir_view(request):
+#     template = "dashboard/snippets/formulir.html"
+#     if request.method == 'POST':
+#         form = FormulirForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('success_url')  # Redirect ke halaman sukses setelah menyimpan data
+#     else:
+#         form = FormulirForm()
+
+#     context={
+#         'form': form
+#     }
+#     return render(request,template,context)
+
+def formulir_view(request):
+    print(request.user)
+    template_name ="dasboard/snippets/formulir.html"
+    if request.method == "POST":
+        forms = FormulirForm(request.POST, request.FILES)
+        if forms.is_valid:
+            pub = forms.save(commit=False)
+            pub.nama = request.user
+            pub.save()
+            return redirect('/')
+        else:
+            print(forms.error_class)
+    forms = FormulirForm()
+    context ={
+        'title' : 'Formulir',
+        'forms' : forms
+    }
+    return render(request,template_name,context)
