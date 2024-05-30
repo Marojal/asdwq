@@ -1,0 +1,140 @@
+
+{% load static %}
+<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4." />
+    <meta name="author" content="Creative Tim" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href='{% static "admin/assets/css/responsive.css" %}' />
+    <link href='{% static "admin/assets/css/style.css" %}' rel="stylesheet" />
+    <link href='{% static "admin/assets/css/bootstrap.css" %}' rel="stylesheet" />
+    <link rel="icon" href='{% static "admin/assets/img/brand/favicon.png" %}' type="image/png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+    <link rel="stylesheet" href='{% static "admin/assets/vendor/nucleo/css/nucleo.css" %}' type="text/css" />
+    <link rel="stylesheet" href='{% static "admin/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" %}' type="text/css" />
+    <link rel="stylesheet" href='{% static "admin/assets/css/argon.css" %}' ?v="1.2.1" type="text/css" />
+  
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'dashboard/assets/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'dashboard/assets/img/favicon.png' %}">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="{% static 'dashboard/assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'dashboard/assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{% static 'dashboard/assets/css/material-dashboard.css' %}?v=3.0.1" rel="stylesheet" />
+  </head>
+  <body>
+    {% include 'dashboard/navbar.html' %} {% block content %}{% endblock %}
+    <!-- halaman dashboard -->
+    <script src='{% static "admin/assets/vendor/jquery/dist/jquery.min.js" %}'></script>
+    <script src='{% static "admin/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js" %}'></script>
+    <script src='{% static "admin/assets/vendor/js-cookie/js.cookie.js" %}'></script>
+    <script src='{% static "admin/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js" %}'></script>
+    <script src='{% static "admin/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js" %}'></script>
+    <script src='{% static "admin/assets/js/argon.js" %}' ?v="1.2.1"></script>
+    <script src="{% static 'admin/assets/js/demo.min.js' %}"></script>
+    <script src='{% static "admin/js/jquery-3.4.1.min.js" %}'></script>
+    <script src='{% static "admin/js/bootstrap.js" %}'></script>
+    
+    <!-- chart -->
+    <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/core/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctxPie = document.getElementById('chart-pie').getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Bidan', 'Kesling', 'Perawat', 'Hukum'],
+                datasets: [{
+                    data: [300, 50, 100, 80],
+                    backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384', '#4BC0C0'],
+                    hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#FF6384', '#4BC0C0']
+                }]
+            }
+        });
+
+        var ctxLine = document.getElementById('chart-line').getContext('2d');
+        var lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April'],
+                datasets: [{
+                    label: 'Demo line plot',
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    borderColor: 'rgba(78, 115, 223, 1)',
+                    data: [0, 20, 15, 40],
+                }]
+            }
+        });
+    });
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'dashboard/assets/js/material-dashboard.min.js' %}?v=3.0.1"></script>
+  
+  <!-- calendar -->
+  <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'dashboard/assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'dashboard/assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'dashboard/assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'dashboard/assets/js/plugins/fullcalendar.min.js' %}"></script>
+  <script>
+    var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
+      contentHeight: 'auto',
+      initialView: "dayGridMonth",
+      headerToolbar: {
+        start: 'title', // will normally be on the left. if RTL, will be on the right
+        center: '',
+        end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
+      },
+      selectable: true,
+      editable: true,
+      initialDate: new Date().toISOString().slice(0, 10), // Menampilkan tanggal sekarang
+      events: [
+        // Tambahkan event Anda di sini
+      ],
+      views: {
+        month: {
+          titleFormat: {
+            month: "long",
+            year: "numeric"
+          }
+        },
+        agendaWeek: {
+          titleFormat: {
+            month: "long",
+            year: "numeric",
+            day: "numeric"
+          }
+        },
+        agendaDay: {
+          titleFormat: {
+            month: "short",
+            year: "numeric",
+            day: "numeric"
+          }
+        }
+      },
+    });
+
+    calendar.render();
+  </script>
+</body>
+</html>
